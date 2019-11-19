@@ -13,10 +13,11 @@ export default class PokemonShow extends Component
 
     render()
     {
+        console.log(this.state.pokemon)
         return(
             <main>
-                <h1>{this.state.pokemon.name}</h1>
-                <img src={this.state.pokemon.sprites.front_default}/>
+                {this.state.pokemon ? this.state.pokemon.name : <h1>Pokemon</h1>}
+                {this.state.pokemon ? <img src={this.state.pokemon.sprites.front_default} alt='pokemon'/> : <h1>Sprite</h1>}
             </main>
         )
     }
