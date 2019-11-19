@@ -39,7 +39,6 @@ export default class App extends Component
     render() 
     {   
         const pokemonList = this.state.pokemonList
-        console.log(pokemonList)
         const list = () => {
             return(
                 pokemonList.map((index) => {
