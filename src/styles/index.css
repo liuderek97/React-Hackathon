@@ -1,3 +1,5 @@
+
+
 * {
     margin: 0;
     padding: 0;
@@ -28,42 +30,35 @@ h1 {
     cursor: pointer;
     transition: box-shadow .2s;
 }
+
 .pokemon.grass {
     background-color: #50AE55;
 }
+
 .pokemon.electric {
     background-color: #FEC93E;
 }
+
 .pokemon.water {
     background-color: #1EABF1;
 }
+
 .pokemon.rock {
     background-color: #79909C;
 }
+
 .pokemon:hover {
     box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.3);
 }
+
 .pokemon .sprite {
+
 }
+
 .pokemon .sprite img {
     width: 100%;
 }
+
 .pokemon .name {
     text-transform: capitalize;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
