@@ -4,16 +4,28 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
-    font-family: 'Press Start 2P', sans-serif;
-    font-size: 14px;
-    margin: 20px;
+    
+    font-family: 'Roboto' ,arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.container {
+    padding: 20px;
+    background-image: url('/pokeball.png');
+    background-repeat: round;
 }
 
 h1 {
     font-size: 44px;
     margin: 20px;
     text-align: center;
+    text-transform: capitalize;
 }
 
 #pokemon-container {
@@ -24,31 +36,46 @@ h1 {
     flex-wrap: wrap;
 }
 
+.loading {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #1EABF1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s;
+}
+
 .pokemon {
     display: inline-block;
     width: 220px;
+    height: 244px;
     padding: 10px;
     margin: 10px;
     border-radius: 10px;
     cursor: pointer;
     transition: box-shadow .2s;
     background-color: #cccccc;
+    color: #000;
 }
 
-.grass, .bug        { background-color: #50AE55; }
-.electric, .psychic { background-color: #FEC93E; }
-.water, .ice        { background-color: #1EABF1; }
-.rock, .steel       { background-color: #79909C; }
-.poison             { background-color: #8B75BB; }
-.fire               { background-color: #FD4C3A; }
-.flying, .ground    { background-color: #DDAC77; }
+.grass, .bug        { background-color: #50AE55; color: #01540c; }
+.electric, .psychic { background-color: #FEC93E; color: #736503; }
+.water, .ice        { background-color: #1EABF1; color: #014994; }
+.rock, .steel       { background-color: #79909C; color: #000000; }
+.poison             { background-color: #8B75BB; color: #4100b3; }
+.fire               { background-color: #FD4C3A; color: #770000; }
+.flying, .ground    { background-color: #DDAC77; color: #8c2222; }
+.fairy              { background-color: #f560aa; color: #630049; }
+
 
 .pokemon:hover {
     box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
 .pokemon .sprite {
-
+    height: 190px;
 }
 
 .pokemon .sprite img {
@@ -59,3 +86,38 @@ h1 {
     text-transform: capitalize;
     text-align: center;
 }
+
+
+.pokemon-show {
+    height: 100vh;
+    overflow: auto;
+    position: relative;
+}
+
+.pokemon-show h1 {
+    font-size: 80px;
+}
+
+.pokemon-show .id {
+    font-size: 180px;
+    opacity: .4;
+}
+
+.pokemon-show .sprite {
+    position: absolute;
+    left: 150px;
+    height: 300px;
+    width: 300px;
+}
+
+.pokemon-show .sprite img {
+    position: absolute;
+    left: -100px;
+    top: 110px;
+    height: 100%;
+}
+
+#back {
+    position: fixed;
+}
+

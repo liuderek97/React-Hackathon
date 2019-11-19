@@ -1,105 +1,53 @@
-import React, { Component } from "react";
-import {Route, BrowserRouter, Redirect} from 'react-router-dom'
-import {Loader, Container, Segment,Dimmer, Image} from 'semantic-ui-react'
-export default class PokemonList extends Component
- {
-  constructor(props)
+import React, { Component } from 'react';
+
+export default class PokemonShow extends Component
+{
+    showPokemon = e => 
     {
-        super(props);
-        this.state = {
-            pokemon: [],
-			pokemonList:[],
-			chosenPokemon:'',
-			isLoading: false
-        }
+        let id = e.currentTarget.dataset['id'];
+        this.props.history.push(`/show/${id}`);
     }
 
-    componentDidMount()
-    {   
-		
-		fetch('https://pokeapi.co/api/v2/pokemon/?limit=807')
-			.then(res => res.json(),
-				this.setState({isLoading:true})			
-			)
-            .then((result)=>{
-                let pokemonList = result.results
-                this.setState({pokemon:pokemonList})  
-                let pokeList = []
-                for(let i = 1; i <= this.state.pokemon.length; i++)
+    render()
+    {
+        let { data, loading } = this.props;
+
+        const list = () =>
+        {
+            return(
+                data.pokemon.map( (pokemon, i) => 
                 {
-                    fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
-                        .then(res => res.json())
-                        .then((result => {
-                            pokeList.push(result)
-							this.setState({pokemonList: pokeList, isLoading:false})							
-                        }))
+                    return(
+                        <div className={`pokemon ${pokemon.type}`} key={pokemon.name} data-id={i} onClick={this.showPokemon}>
+                            <div className='sprite'>                                
+                                <img src={pokemon.sprite} alt={pokemon.name} loading='lazy' />
+                            </div>
+                            <div className='name'>
+                                {pokemon.name}
+                            </div>
+                        </div> 
+                    )
+                })
+            )
+        }
+
+        return (
+            <div>
+                {data.pokemon === null && loading()}
+                
+                {data.pokemon !== null && 
+                    <div className="container">
+                        <div>
+                            <h1>Pokémon</h1>
+                            {/* <input id="search" type="text" placeholder="Search..." /> */}
+                            <div id='pokemon-container'>
+                                {list()}
+                            </div>
+                        </div>
+                    </div>
                 }
-			})
-		
+            </div>    
+            
+        )
     }
-
-    handleClick = (pokemon) => {
-        console.log('hi')
-        console.log(pokemon)
-        this.setState({chosenPokemon:pokemon})
-        
-        
-    }
-
-    render() 
-    {   
-		console.log(this.state.isLoading)
-		const {pokemonList,chosenPokemon} = this.state
-		
-		if(this.state.chosenPokemon){
-			return <Redirect 
-			to={{
-				pathname: `/show`,
-				pokemon: chosenPokemon				
-			}}/>
-	
-		}
-
-        const list = () => {
-			if(this.state.isLoading)
-			{
-				return(
-					<Container>
-						<Loader active inline='centered'>Loading</Loader>	
-					</Container>
-					
-				)
-				
-			}
-
-			else
-			{
-				return(
-					pokemonList.map((pokemon) => {
-						return(
-							<div className={`pokemon ${pokemon.types[0].type.name}`} key={pokemon.name} onClick={() => this.handleClick(pokemon)}>
-								<div className='sprite'>
-									<img src={pokemon.sprites.front_default} alt={pokemon.name}/>
-								</div>
-								<div className='name'>
-									{pokemon.name}
-								</div>
-							</div>
-						)
-					})
-				)
-			}
-           
-		}
-
-		return(
-			<main>
-             <h1>Pokemon</h1>
-             <div id='pokemon-container'>
-			 
-             {list()}
-            </div>
-            </main>
-		)
-	}
 }
