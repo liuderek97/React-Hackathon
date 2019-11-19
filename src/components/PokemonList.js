@@ -1,83 +1,53 @@
-import React, { Component } from "react";
-import {Route, BrowserRouter, Redirect} from 'react-router-dom'
+import React, { Component } from 'react';
 
-export default class PokemonList extends Component
- {
-  constructor(props)
+export default class PokemonShow extends Component
+{
+    showPokemon = e => 
     {
-        super(props);
-        this.state = {
-            pokemon: [],
-			pokemonList:[],
-			chosenPokemon:''
-        }
+        let id = e.currentTarget.dataset['id'];
+        this.props.history.push(`/show/${id}`);
     }
 
-    componentDidMount()
-    {   
-        fetch('https://pokeapi.co/api/v2/pokemon/?limit=151')
-            .then(res => res.json())
-            .then((result)=>{
-                let pokemonList = result.results
-                this.setState({pokemon:pokemonList})  
-                let pokeList = []
-                for(let i = 1; i <= this.state.pokemon.length; i++)
-                {
-                    fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
-                        .then(res => res.json())
-                        .then((result => {
-                            pokeList.push(result)
-                            this.setState({pokemonList: pokeList})
-                        }))
-                }
-            })
-    }
+    render()
+    {
+        let { data, loading } = this.props;
 
-    handleClick = (pokemon) => {
-        console.log('hi')
-        console.log(pokemon)
-        this.setState({chosenPokemon:pokemon})
-        
-        
-    }
-
-    render() 
-    {   
-		const {pokemonList,chosenPokemon} = this.state
-		
-		if(this.state.chosenPokemon){
-			return <Redirect 
-			to={{
-				pathname: `/show`,
-				pokemon: chosenPokemon				
-			}}/>
-	
-		}
-
-        const list = () => {
+        const list = () =>
+        {
             return(
-                pokemonList.map((pokemon) => {
+                data.pokemon.map( (pokemon, i) => 
+                {
                     return(
-                        <div className={`pokemon ${pokemon.types[0].type.name}`} key={pokemon.name} onClick={() => this.handleClick(pokemon)}>
-                            <div className='sprite'>
-                                <img src={pokemon.sprites.front_default} alt={pokemon.name}/>
+                        <div className={`pokemon ${pokemon.type}`} key={pokemon.name} data-id={i} onClick={this.showPokemon}>
+                            <div className='sprite'>                                
+                                <img src={pokemon.sprite} alt={pokemon.name} loading='lazy' />
                             </div>
                             <div className='name'>
                                 {pokemon.name}
                             </div>
-                        </div>
+                        </div> 
                     )
                 })
             )
-		}
+        }
 
-		return(
-			<main>
-             <h1>Pokemon</h1>
-             <div id='pokemon-container'>
-             {list()}
-            </div>
-            </main>
-		)
-	}
+        return (
+            <div>
+                {data.pokemon === null && loading()}
+                
+                {data.pokemon !== null && 
+                    <div className="container">
+                        <div>
+                            <h1>Pokémon</h1>
+                            {/* <input id="search" type="text" placeholder="Search..." /> */}
+                            <div id='pokemon-container'>
+                                {list()}
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>    
+            
+        )
+    }
 }
