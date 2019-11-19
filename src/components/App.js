@@ -44,7 +44,7 @@ export default class App extends Component
             return(
                 pokemonList.map((index) => {
                     return(
-                        <div className={`pokemon ${index.types[0].type.name}`}  data-id={index} key={index.name}>
+                        <div className={`pokemon ${index.types[0].type.name}`} key={index.name}>
                             <div className='sprite'>
                                 <img src={index.sprites.front_default} alt={index.name}/>
                             </div>
