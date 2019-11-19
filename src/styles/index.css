@@ -57,4 +57,5 @@ h1 {
 
 .pokemon .name {
     text-transform: capitalize;
+    text-align: center;
 }
