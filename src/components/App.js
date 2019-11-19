@@ -40,19 +40,17 @@ export default class App extends Component
     render() 
     {   
         const pokemonList = this.state.pokemonList
-        
+        console.log(pokemonList)
         const list = () => {
             return(
                 pokemonList.map((index) => {
                     return(
-                        <div id='pokemon-container'>
-                            <div className='pokemon' data-id={index} key={index.name}>
-                                <div className='sprite'>
-                                    <img src={index.sprites.front_default} alt={index.name}/>
-                                </div>
-                                <div className='name'>
-                                    {index.name}
-                                </div>
+                        <div className={`pokemon ${index.types[0].type.name}`}  data-id={index} key={index.name}>
+                            <div className='sprite'>
+                                <img src={index.sprites.front_default} alt={index.name}/>
+                            </div>
+                            <div className='name'>
+                                {index.name}
                             </div>
                         </div>
                     )
@@ -62,7 +60,9 @@ export default class App extends Component
         return (
             <main>
              <h1>Pokemon</h1>
+             <div id='pokemon-container'>
                 {list()}
+            </div>
             </main>
         )
     }
