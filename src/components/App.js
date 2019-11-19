@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Route, BrowserRouter, Link} from 'react-router-dom'
+import {Route, BrowserRouter, Redirect} from 'react-router-dom'
 import PokemonShow from './PokemonShow'
 import { readdir } from "fs";
 export default class App extends Component 
@@ -35,6 +35,18 @@ export default class App extends Component
             })
     }
 
+    handleClick = (pokemon) => {
+        console.log('hi')
+        return(
+            <Redirect 
+                to={{
+                    pathname: "/show",
+                    state: {pokemon}
+                }}/>
+        )
+        
+    }
+
     render() 
     {   
         const pokemonList = this.state.pokemonList
@@ -42,25 +54,14 @@ export default class App extends Component
             return(
                 pokemonList.map((pokemon) => {
                     return(
-                        <BrowserRouter>
-                            <Link
-                                to={{
-                                pathname: "/show",
-                                state: {
-                                    pokemon:pokemon
-                                }
-                                }}
-                            >
-                                <div className={`pokemon ${pokemon.types[0].type.name}`} key={pokemon.name}>
-                                    <div className='sprite'>
-                                        <img src={pokemon.sprites.front_default} alt={pokemon.name}/>
-                                    </div>
-                                    <div className='name'>
-                                        {pokemon.name}
-                                    </div>
-                                </div>
-                            </Link>
-                        </BrowserRouter>
+                        <div className={`pokemon ${pokemon.types[0].type.name}`} key={pokemon.name} onClick={() => this.handleClick(pokemon)}>
+                            <div className='sprite'>
+                                <img src={pokemon.sprites.front_default} alt={pokemon.name}/>
+                            </div>
+                            <div className='name'>
+                                {pokemon.name}
+                            </div>
+                        </div>
                     )
                 })
             )
@@ -73,7 +74,9 @@ export default class App extends Component
 
              <h1>Pokemon</h1>
              <div id='pokemon-container'>
+             <BrowserRouter>
                 {list()}
+                </BrowserRouter>
             </div>
             </main>
         )
