@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-
+import {Route, BrowserRouter, Link} from 'react-router-dom'
+import PokemonShow from './PokemonShow'
+import { readdir } from "fs";
 export default class App extends Component 
 {
     constructor(props)
@@ -33,30 +35,42 @@ export default class App extends Component
             })
     }
 
-
-  
-
     render() 
     {   
         const pokemonList = this.state.pokemonList
         const list = () => {
             return(
-                pokemonList.map((index) => {
+                pokemonList.map((pokemon) => {
                     return(
-                        <div className={`pokemon ${index.types[0].type.name}`} key={index.name}>
-                            <div className='sprite'>
-                                <img src={index.sprites.front_default} alt={index.name}/>
-                            </div>
-                            <div className='name'>
-                                {index.name}
-                            </div>
-                        </div>
+                        <BrowserRouter>
+                            <Link
+                                to={{
+                                pathname: "/show",
+                                state: {
+                                    pokemon:pokemon
+                                }
+                                }}
+                            >
+                                <div className={`pokemon ${pokemon.types[0].type.name}`} key={pokemon.name}>
+                                    <div className='sprite'>
+                                        <img src={pokemon.sprites.front_default} alt={pokemon.name}/>
+                                    </div>
+                                    <div className='name'>
+                                        {pokemon.name}
+                                    </div>
+                                </div>
+                            </Link>
+                        </BrowserRouter>
                     )
                 })
             )
         }
         return (
             <main>
+            <BrowserRouter>
+                <Route exact path={'/show'} component={PokemonShow}/>
+            </BrowserRouter>
+
              <h1>Pokemon</h1>
              <div id='pokemon-container'>
                 {list()}
