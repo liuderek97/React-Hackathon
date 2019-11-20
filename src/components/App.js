@@ -37,6 +37,7 @@ export default class App extends Component
                 char[p.id].weight = p.weight;
                 char[p.id].stats = p.stats;
                 char[p.id].items = p.held_items
+                char[p.id].id    = p.id
             })
             
             promises.push(promise);
