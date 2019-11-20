@@ -31,8 +31,12 @@ export default class App extends Component
                 char[p.id]        = { };
                 char[p.id].name   = p.name;
                 char[p.id].sprite = p.sprites.front_default;
-                char[p.id].type   = p.types[0].type.name;
-                char[p.id].id     = p.id
+                char[p.id].type   = p.types;
+                char[p.id].abilities = p.abilities;
+                char[p.id].height = p.height;
+                char[p.id].weight = p.weight;
+                char[p.id].stats = p.stats;
+                char[p.id].items = p.held_items
             })
             
             promises.push(promise);
