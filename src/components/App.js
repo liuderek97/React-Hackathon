@@ -18,7 +18,7 @@ export default class App extends Component
     getPokemon = async () =>
     {
         const apiUrl = 'https://pokeapi.co/api/v2';
-        let pokemon = await fetch(`${apiUrl}/pokemon/?limit=30`).then(res => res.json());
+        let pokemon = await fetch(`${apiUrl}/pokemon/?limit=807`).then(res => res.json());
         let char = [ ];
         let promises = [ ];
         
