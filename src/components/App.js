@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import PokemonShow from './PokemonShow'
 import PokemonList from './PokemonList'
-import {Dimmer, Loader} from 'semantic-ui-react'
+import {Loader} from 'semantic-ui-react'
 
 export default class App extends Component 
 {
@@ -18,7 +18,7 @@ export default class App extends Component
     getPokemon = async () =>
     {
         const apiUrl = 'https://pokeapi.co/api/v2';
-        let pokemon = await fetch(`${apiUrl}/pokemon/?limit=900`).then(res => res.json());
+        let pokemon = await fetch(`${apiUrl}/pokemon/?limit=30`).then(res => res.json());
         let char = [ ];
         let promises = [ ];
         
@@ -32,6 +32,7 @@ export default class App extends Component
                 char[p.id].name   = p.name;
                 char[p.id].sprite = p.sprites.front_default;
                 char[p.id].type   = p.types[0].type.name;
+                char[p.id].id     = p.id
             })
             
             promises.push(promise);
