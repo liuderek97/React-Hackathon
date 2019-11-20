@@ -6,6 +6,7 @@
 
 html, body {
     height: 100%;
+    text-transform: capitalize;
 }
 
 body {
@@ -26,7 +27,6 @@ h1 {
     font-size: 48px;
     margin: 20px;
     text-align: center;
-    text-transform: capitalize;
 }
 
 #pokemon-logo {
@@ -100,7 +100,6 @@ h1 {
 }
 
 .pokemon .name {
-    text-transform: capitalize;
     text-align: center;
 }
 

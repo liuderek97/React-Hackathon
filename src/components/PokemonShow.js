@@ -26,7 +26,7 @@ export default class PokemonShow extends Component
                         <div className="box stats">
                             <div>Weight: {data.pokemon[id].weight}</div>
                             <div>Height: {data.pokemon[id].height}</div>
-                            {data.pokemon[id].stats.map((stat, i) => <div key={i}>{stat.stat.name}: {stat.base_stat}</div>)}
+                            {data.pokemon[id].stats.map((stat, i) => <div key={i}>{stat.stat.name.replace("-", " ")}: {stat.base_stat}</div>)}
                         </div>
 
                         <div className="box types">
