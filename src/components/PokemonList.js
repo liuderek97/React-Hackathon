@@ -41,32 +41,14 @@ export default class PokemonShow extends Component
 		let {culledData, searched} = this.state;
         const list = () =>
         {
-<<<<<<< HEAD
-            return(
-                data.pokemon.map( (pokemon, i) => 
-                {
-                    return(
-                        <div className={`pokemon ${pokemon.type[0].type.name}`} key={pokemon.name} data-id={i} onClick={this.showPokemon}>
-                            <span className='id'>#{i}</span>
-                            <div className='sprite'>                                
-                                <img src={pokemon.sprite} alt={pokemon.name} loading='lazy' />
-                            </div>
-                            <div className='name'>
-                                {pokemon.name}
-                            </div>
-                        </div> 
-                    )
-                })
-            )
-        }
-=======
+
 			if(searched && culledData)
 			{
 				return(
 					culledData.map( (pokemon, i) => 
 					{
 						return(
-							<div className={`pokemon ${pokemon.type}`} key={pokemon.name} data-id={pokemon.id} onClick={this.showPokemon}>
+							<div className={`pokemon ${pokemon.type[0].type.name}`} key={pokemon.name} data-id={pokemon.id} onClick={this.showPokemon}>
 								<div className='sprite'>                                
 								{console.log(pokemon)}
 									<img src={pokemon.sprite} alt={pokemon.name} loading='lazy' />
@@ -98,7 +80,6 @@ export default class PokemonShow extends Component
 					})
 				)
 			}
-           
 		}
 		
 		
@@ -129,7 +110,6 @@ export default class PokemonShow extends Component
 				</Grid>
 			)
 		}
->>>>>>> edb8fda8975e5651d18dad46d2fd72ddc392cc2a
 
         return (
             <div>
@@ -137,15 +117,10 @@ export default class PokemonShow extends Component
                 {data.pokemon !== null && 
                     <div className="container">
                         <div>
-<<<<<<< HEAD
                             <div id='pokemon-logo'>
                                 <img src='/pokemon_logo.png' alt='Pokemon Logo' />
                             </div>
-=======
-                            <h1>Pokémon</h1>
 							{searchBar()}
->>>>>>> edb8fda8975e5651d18dad46d2fd72ddc392cc2a
-                            {/* <input id="search" type="text" placeholder="Search..." /> */}
                             <div id='pokemon-container'>
                                 {list()}
                             </div>
@@ -153,7 +128,6 @@ export default class PokemonShow extends Component
                     </div>
                 }
             </div>    
-            
         )
     }
 }

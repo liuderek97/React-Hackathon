@@ -18,11 +18,8 @@ export default class App extends Component
     getPokemon = async () =>
     {
         const apiUrl = 'https://pokeapi.co/api/v2';
-<<<<<<< HEAD
-        let pokemon = await fetch(`${apiUrl}/pokemon/?limit=26`).then(res => res.json());
-=======
+
         let pokemon = await fetch(`${apiUrl}/pokemon/?limit=30`).then(res => res.json());
->>>>>>> edb8fda8975e5651d18dad46d2fd72ddc392cc2a
         let char = [ ];
         let promises = [ ];
         
@@ -35,17 +32,12 @@ export default class App extends Component
                 char[p.id]        = { };
                 char[p.id].name   = p.name;
                 char[p.id].sprite = p.sprites.front_default;
-<<<<<<< HEAD
                 char[p.id].type   = p.types;
                 char[p.id].abilities = p.abilities;
                 char[p.id].height = p.height;
                 char[p.id].weight = p.weight;
                 char[p.id].stats = p.stats;
                 char[p.id].items = p.held_items
-=======
-                char[p.id].type   = p.types[0].type.name;
-                char[p.id].id     = p.id
->>>>>>> edb8fda8975e5651d18dad46d2fd72ddc392cc2a
             })
             
             promises.push(promise);

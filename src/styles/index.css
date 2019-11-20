@@ -79,7 +79,6 @@ h1 {
 .flying, .ground    { background-color: #DDAC77; color: #8c2222; border-color: #8c2222; }
 .fairy              { background-color: #f560aa; color: #630049; border-color: #630049; }
 
-
 .pokemon:hover {
     box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.3);
 }
