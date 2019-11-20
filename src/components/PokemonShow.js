@@ -16,6 +16,8 @@ export default class PokemonShow extends Component
 
                     <h1>{data.pokemon[id].name}</h1>
 
+                    <Link id="back" to='/'><Icon name='chevron left'/>Back</Link>
+
                     <span className="id">#{id}</span>
 
                     <div className="sprite">
@@ -48,7 +50,7 @@ export default class PokemonShow extends Component
 
                 {data.pokemon !== null && 
                     <div>
-                        <Link id="back" to='/'><Icon name='chevron left'/>Back</Link>
+                        
                         {show()}
                     </div>
                 }

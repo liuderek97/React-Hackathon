@@ -22,23 +22,29 @@ export default class PokemonShow extends Component
 	}
 	
 	search = () => {
-		this.setState({searched: true})
-		let search = this.state.searchPokemon
-		let data = this.props.data
-		let searchResults = data.pokemon.filter((pokemon) => {
-			return pokemon.name.includes(search)
-		})
-		this.setState({culledData: searchResults})
+        this.setState({ searched: true });
+        
+        let search = this.state.searchPokemon;
+        let data = this.props.data;
+        
+        let searchResults = data.pokemon.filter((pokemon) => 
+        {
+            return pokemon.name.includes(search);
+        })
+        
+        this.setState({ culledData: searchResults });
 	}
 
-	handleClear = () => {
-		this.setState({searched:false})
+    handleClear = () => 
+    {
+        this.setState({ searched: false });
 	}
 
     render()
     {
 		let { data, loading } = this.props;
-		let {culledData, searched} = this.state;
+        let { culledData, searched } = this.state;
+        
         const list = () =>
         {
 
@@ -88,25 +94,11 @@ export default class PokemonShow extends Component
 				<Grid centered>
 					<Input 
 						style={{margin:'20px', borderRadius:'20px'}}
-						onChange={(e, {value}) => {
-							this.setState({searchPokemon:value})
-						}}
+                        onChange={(e, { value }) => this.setState({ searchPokemon: value })}
 						placeholder='Search...'/>
 
-					<Button
-						primary
-						style={{margin: '15px'}}
-						onClick={this.search}
-					>
-						Search
-					</Button>
-					<Button
-						primary
-						style={{margin: '15px'}}
-						onClick={this.handleClear}
-					>
-						Clear
-					</Button>
+					<Button primary style={{margin: '15px'}} onClick={this.search}>Search</Button>
+					<Button primary style={{margin: '15px'}} onClick={this.handleClear}>Clear</Button>
 				</Grid>
 			)
 		}
