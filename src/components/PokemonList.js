@@ -18,7 +18,8 @@ export default class PokemonShow extends Component
                 data.pokemon.map( (pokemon, i) => 
                 {
                     return(
-                        <div className={`pokemon ${pokemon.type}`} key={pokemon.name} data-id={i} onClick={this.showPokemon}>
+                        <div className={`pokemon ${pokemon.type[0].type.name}`} key={pokemon.name} data-id={i} onClick={this.showPokemon}>
+                            <span className='id'>#{i}</span>
                             <div className='sprite'>                                
                                 <img src={pokemon.sprite} alt={pokemon.name} loading='lazy' />
                             </div>
@@ -38,7 +39,9 @@ export default class PokemonShow extends Component
                 {data.pokemon !== null && 
                     <div className="container">
                         <div>
-                            <h1>Pokémon</h1>
+                            <div id='pokemon-logo'>
+                                <img src='/pokemon_logo.png' alt='Pokemon Logo' />
+                            </div>
                             {/* <input id="search" type="text" placeholder="Search..." /> */}
                             <div id='pokemon-container'>
                                 {list()}
