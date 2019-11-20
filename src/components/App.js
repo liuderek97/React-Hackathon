@@ -18,8 +18,7 @@ export default class App extends Component
     getPokemon = async () =>
     {
         const apiUrl = 'https://pokeapi.co/api/v2';
-
-        let pokemon = await fetch(`${apiUrl}/pokemon/?limit=811`).then(res => res.json());
+        let pokemon = await fetch(`${apiUrl}/pokemon/?limit=807`).then(res => res.json());
         let char = [ ];
         let promises = [ ];
         
@@ -38,6 +37,7 @@ export default class App extends Component
                 char[p.id].weight = p.weight;
                 char[p.id].stats = p.stats;
                 char[p.id].items = p.held_items
+                char[p.id].id    = p.id
             })
             
             promises.push(promise);

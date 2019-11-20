@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import {Icon} from 'semantic-ui-react'
 
 export default class PokemonShow extends Component
 {
@@ -47,7 +48,7 @@ export default class PokemonShow extends Component
 
                 {data.pokemon !== null && 
                     <div>
-                        <Link id="back" to='/'>Back</Link>
+                        <Link id="back" to='/'><Icon name='chevron left'/>Back</Link>
                         {show()}
                     </div>
                 }
