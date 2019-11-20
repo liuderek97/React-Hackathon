@@ -68,7 +68,7 @@ export default class PokemonShow extends Component
 					data.pokemon.map( (pokemon, i) => 
 					{
 						return(
-							<div className={`pokemon ${pokemon.type}`} key={pokemon.name} data-id={i} onClick={this.showPokemon}>
+							<div className={`pokemon ${pokemon.type[0].type.name}`} key={pokemon.name} data-id={i} onClick={this.showPokemon}>
 								<div className='sprite'>                                
 									<img src={pokemon.sprite} alt={pokemon.name} loading='lazy' />
 								</div>
